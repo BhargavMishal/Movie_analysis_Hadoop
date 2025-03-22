@@ -1,0 +1,1 @@
+ratingsBreakdown contains python code to run the map reduce job to get count of movies by rating
