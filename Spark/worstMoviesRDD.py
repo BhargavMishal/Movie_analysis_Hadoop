@@ -28,6 +28,8 @@ if __name__ == "__main__":
     movieRatings = lines.map(parseInput)
     # reducing to (movieID, (sumOfRatings, totalRatings))
     ratingTotals = movieRatings.reduceByKey(lambda movie1, movie2: (movie1[0]+movie2[0], movie1[1]+movie2[1]))
+    # filtering our movies rated less than 10 times
+    ratingTotals = ratingTotals.filter(lambda x: x[1][1] > 10)
     # mapping to (movieID, averageRating)
     averageRatings = ratingTotals.mapValues(lambda total: total[0]/total[1])
     # sorting it by average rating
